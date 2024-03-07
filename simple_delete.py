@@ -8,7 +8,32 @@ VALUES
 (5, 101, 'May 2024', '2024-05-31', 'Chris Lee', 'Closed', '2024-05-01', '2024-05-31', '2024-01-01', 2);
 
 
+CREATE DATABASE datacoding;
 
+CREATE TABLE datacoding.iceberg_table (
+  id int,
+  data string,
+  category string)
+LOCATION 's3://datacoding-iceberg-table/iceberg-folder' 
+TBLPROPERTIES (
+  'table_type'='ICEBERG',
+  'format'='parquet'
+);
+
+INSERT INTO datacoding.iceberg_table VALUES (1,'a','c1');
+
+
+spark.conf.set("spark.sql.catalog.default", "org.apache.iceberg.spark.SparkCatalog")
+spark.conf.set("spark.sql.catalog.default.warehouse", "s3://datacoding-iceberg-table/iceberg-folder/")
+spark.conf.set("spark.sql.catalog.default.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog")
+spark.conf.set("spark.sql.catalog.default.io-impl", "org.apache.iceberg.aws.s3.S3FileIO")
+spark.conf.set("spark.sql.catalog.default.lock-impl", "org.apache.iceberg.aws.glue.DynamoLockManager")
+spark.conf.set("spark.sql.catalog.default.lock.table", "datacoding_iceberg_lock_table")
+
+df = spark.sql("select id, data, category from default.datacoding.iceberg_table")
+logger.info(f"Number of rows in data frame {df.count()}")
+
+job.commit()
 
 
 
