@@ -1,3 +1,5 @@
+spark.sql("DELETE FROM `glue_catalog`.`ice_db.ice_table` AS T WHERE col1 = 1")
+
 schema = StructType([
     StructField("APPLICATION_ID", IntegerType(), True),
     StructField("SET_OF_BOOKS_ID", IntegerType(), True),
