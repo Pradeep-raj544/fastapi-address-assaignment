@@ -1,3 +1,42 @@
+schema = StructType([
+    StructField("APPLICATION_ID", IntegerType(), True),
+    StructField("SET_OF_BOOKS_ID", IntegerType(), True),
+    StructField("PERIOD_NAME", StringType(), True),
+    StructField("LAST_UPDATE_DATE", StringType(), True),
+    StructField("LAST_UPDATED_BY", IntegerType(), True),
+    StructField("CLOSING_STATUS", StringType(), True),
+    StructField("START_DATE", StringType(), True),
+    StructField("END_DATE", StringType(), True),
+    StructField("YEAR_START_DATE", StringType(), True),
+    StructField("QUARTER_NUM", IntegerType(), True),
+    StructField("QUARTER_START_DATE", StringType(), True),
+    StructField("PERIOD_TYPE", StringType(), True),
+    StructField("PERIOD_YEAR", IntegerType(), True),
+    StructField("EFFECTIVE_PERIOD_NUM", IntegerType(), True),
+    StructField("PERIOD_NUM", IntegerType(), True),
+    StructField("ADJUSTMENT_PERIOD_FLAG", StringType(), True),
+    StructField("CREATION_DATE", StringType(), True),
+    StructField("CREATED_BY", IntegerType(), True),
+    StructField("LAST_UPDATE_LOGIN", IntegerType(), True),
+    StructField("LEDGER_ID", IntegerType(), True),
+    StructField("EFFECTIVE_PERIOD_NUM", IntegerType(), True),
+    StructField("APPLICATION_ID", IntegerType(), True)
+])
+
+data = [
+    (6, 2, 'March', '2024-03-31', 1006, 'Closed', '2024-03-01', '2024-03-31', '2024-03-01', 1, '2024-03-01', 'Standard', 2024, 3, 3, 'N', '2024-03-01', 1006, 1006, 2),
+    (7, 3, 'January', '2024-01-31', 1007, 'Closed', '2024-01-01', '2024-01-31', '2024-01-01', 1, '2024-01-01', 'Standard', 2024, 1, 1, 'N', '2024-01-01', 1007, 1007, 3),
+    (8, 3, 'February', '2024-02-29', 1008, 'Open', '2024-02-01', '2024-02-29', '2024-02-01', 1, '2024-02-01', 'Standard', 2024, 2, 2, 'N', '2024-02-01', 1008, 1008, 3),
+    (9, 3, 'March', '2024-03-31', 1009, 'Closed', '2024-03-01', '2024-03-31', '2024-03-01', 1, '2024-03-01', 'Standard', 2024, 3, 3, 'N', '2024-03-01', 1009, 1009, 3),
+    (10, 4, 'January', '2024-01-31', 1010, 'Closed', '2024-01-01', '2024-01-31', '2024-01-01', 1, '2024-01-01', 'Standard', 2024, 1, 1, 'N', '2024-01-01', 1010, 1010, 4)
+]
+
+df = spark.createDataFrame(data, schema)
+
+
+####################################################
+
+
 INSERT INTO your_database.your_table
 VALUES
   (1, 1, 'January', '2024-01-31', 1001, 'Closed', '2024-01-01', '2024-01-31', '2024-01-01', 1, '2024-01-01', 'Standard', 2024, 1, 1, 'N', '2024-01-01', 1001, 1001, 1),
