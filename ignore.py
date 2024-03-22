@@ -1,3 +1,6 @@
+all_columns_df = df.select(col("metadata.operation").alias("operation"), "data.*")
+
+
 CREATE TABLE iceberg_table (
   APPLICATION_ID INT,
   SET_OF_BOOKS_ID INT,
