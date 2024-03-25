@@ -1,4 +1,6 @@
 all_columns_df = df.select(col("metadata.operation").alias("operation"), "data.*")
+column_dict = {col: dtype for col, dtype in df.dtypes}
+df1 = df1.withColumn(column_name, col(column_name).cast(target_data_type))
 
 
 CREATE TABLE iceberg_table (
